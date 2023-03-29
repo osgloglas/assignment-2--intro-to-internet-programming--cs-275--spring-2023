@@ -1,0 +1,17 @@
+{
+  "name": "assignment-2--intro-to-internet-programming--cs-275--spring-2023",
+  "version": "1.0.0",
+  "description": "assignment 2 CS 275",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chris Johnson",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-eslint": "^6.0.0",
+    "stylelint": "^15.3.0",
+    "stylelint-scss": "^4.5.0"
+  }
+}
