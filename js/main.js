@@ -24,30 +24,30 @@ function slides(data)
         slide.setAttribute(`id`, `slide`);
 
         let album = document.createElement(`p`);
-        album.textContent = data.slide[i].album;
+        album.textContent = data.slideArray[i].album;
         album.setAttribute(`id`, `album`);
 
         let artist = document.createElement(`p`);
-        artist.textContent = data.slide[i].artist;
+        artist.textContent = data.slideArray[i].artist;
         artist.setAttribute(`id`, `div`);
 
         let cover_picture = document.createElement(`img`);
-        cover_picture.setAttribute(`src`, data.slide[i].cover_image.path);
+        cover_picture.setAttribute(`src`, data.slideArray[i].cover_image.path);
         cover_picture.setAttribute(`id`, `pic`);
-        cover_picture.setAttribute(`width`, data.slide[i].cover_image.width);
-        cover_picture.setAttribute(`height`, data.slide[i].cover_image.height);
-        cover_picture.setAttribute(`alt`, data.slide[i].cover_image.alt_content);
+        cover_picture.setAttribute(`width`, data.slideArray[i].cover_image.width);
+        cover_picture.setAttribute(`height`, data.slideArray[i].cover_image.height);
+        cover_picture.setAttribute(`alt`, data.slideArray[i].cover_image.alt_content);
 
         let credit = document.createElement(`p`);
-        credit.textContent = data.slide[i].cover_image.credit;
+        credit.textContent = data.slideArray[i].cover_image.credit;
         credit.setAttribute(`id`, `credit`);
 
         let desc = document.createElement(`p`);
-        desc.textContent = data.slide[i].review.content;
+        desc.textContent = data.slideArray[i].review.content;
         desc.setAttribute(`id`, `desc`);
 
         let source = document.createElement(`p`);
-        source.textContent = data.slide[i].review.source;
+        source.textContent = data.slideArray[i].review.source;
         source.setAttribute(`id`, `source`);
 
         slide.appendChild(album);
