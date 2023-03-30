@@ -14,14 +14,24 @@ let compressHTML = () => {
 };
 
 let lintCSS = () => {
-    return src(`styles/*.css`)
-        .pipe(cssLinter())
+    return src(`styles/main.css`)
+        .pipe(cssLinter({
+            reporters: [
+                {formatter: `string`, console: true}
+            ]}))
         .pipe(dest(`dev/css`));
 };
 
 let lintJS = () => {
     return src(`js/*.js`)
         .pipe(jsLinter())
+        .pipe(jsLinter.result(result => {
+            // Called for each ESLint result.
+            console.log(`ESLint result: ${result.filePath}`);
+            console.log(`# Messages: ${result.messages.length}`);
+            console.log(`# Warnings: ${result.warningCount}`);
+            console.log(`# Errors: ${result.errorCount}`);
+        }))
         .pipe(dest(`dev/js`));
 };
 
