@@ -9,8 +9,12 @@
   "author": "Chris Johnson",
   "license": "ISC",
   "devDependencies": {
+    "browser-sync": "^2.29.1",
     "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
     "gulp-eslint": "^6.0.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-uglify": "^3.0.2",
     "stylelint": "^15.3.0",
     "stylelint-scss": "^4.5.0"
   }
