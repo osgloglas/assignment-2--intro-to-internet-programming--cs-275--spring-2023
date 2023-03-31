@@ -5,6 +5,7 @@ const cssLinter = require(`gulp-stylelint`);
 const jsTranspiler = require(`gulp-babel`);
 const jsLinter = require(`gulp-eslint`);
 const jsCompressor = require(`gulp-uglify`);
+const cssCompressor = require(`gulp-uglifycss`);
 const sync = require(`browser-sync`);
 
 //functions
@@ -36,6 +37,12 @@ let lintCSS = () => {
                 {formatter: `string`, console: true}
             ]}))
         .pipe(dest(`temp/css`));
+};
+
+let compressCSS = () => {
+    return src(`style/*.css`)
+        .pipe(cssCompressor())
+        .pipe(dest(`prod/css`));
 };
 
 let lintJS = () => {
@@ -70,4 +77,10 @@ exports.default = series(
     lintJS,
     transpileJS,
     browserRefresh
+);
+
+exports.build = series(
+    compressHTML,
+    compressCSS,
+    fixJS
 );
