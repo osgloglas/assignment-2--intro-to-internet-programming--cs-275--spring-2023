@@ -29,8 +29,8 @@ function slides(data)
         album.setAttribute(`id`, `album`);
 
         let artist = document.createElement(`p`);
-        artist.textContent = data.slide[i].artist;
         artist.setAttribute(`id`, `div`);
+        artist.innerHTML = `<a href = "${data.slide[i].url}"> ${data.slide[i].artist} </a>`;
 
         let cover_picture = document.createElement(`img`);
         cover_picture.setAttribute(`src`, data.slide[i].cover_image.path);
@@ -40,8 +40,9 @@ function slides(data)
         cover_picture.setAttribute(`alt`, data.slide[i].cover_image.alt_content);
 
         let credit = document.createElement(`p`);
-        credit.textContent = data.slide[i].cover_image.credit;
         credit.setAttribute(`id`, `credit`);
+        credit.innerHTML = `Credit: <a href = "${data.slide[i].cover_image.credit}">
+        ${data.slide[i].cover_image.credit} </a>`;
 
         let desc = document.createElement(`p`);
         desc.textContent = data.slide[i].review.content;

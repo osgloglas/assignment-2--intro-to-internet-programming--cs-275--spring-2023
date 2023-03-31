@@ -5,12 +5,28 @@ const cssLinter = require(`gulp-stylelint`);
 const jsTranspiler = require(`gulp-babel`);
 const jsLinter = require(`gulp-eslint`);
 const jsCompressor = require(`gulp-uglify`);
+const sync = require(`browser-sync`);
 
 //functions
+let browserChoice = `default`;
+
+let browserRefresh = () => {
+    sync({
+        notify: true,
+        reloadDelay: 50,
+        browser: browserChoice,
+        server: {
+            baseDir: [
+                `temp`,
+            ]
+        }
+    });
+};
+
 let compressHTML = () => {
     return src(`*.html`)
         .pipe(htmlCompressor({collapseWhitespace:true}))
-        .pipe(dest(`dev/html`));
+        .pipe(dest(`prod/html`));
 };
 
 let lintCSS = () => {
@@ -19,7 +35,7 @@ let lintCSS = () => {
             reporters: [
                 {formatter: `string`, console: true}
             ]}))
-        .pipe(dest(`dev/css`));
+        .pipe(dest(`temp/css`));
 };
 
 let lintJS = () => {
@@ -32,20 +48,26 @@ let lintJS = () => {
             console.log(`# Warnings: ${result.warningCount}`);
             console.log(`# Errors: ${result.errorCount}`);
         }))
-        .pipe(dest(`dev/js`));
+        .pipe(dest(`temp/js`));
+};
+
+let transpileJS = () => {
+    return src(`js/*.js`)
+        .pipe(jsTranspiler())
+        .pipe(dest(`temp/js`));
 };
 
 let fixJS = () => {
-    return src(`dev/*.js`)
+    return src(`temp/*.js`)
         .pipe(jsCompressor())
         .pipe(jsTranspiler())
-        .pipe(dest(`dev/js`));
+        .pipe(dest(`prod/js`));
 };
 
 //export
 exports.default = series(
-    compressHTML,
     lintCSS,
     lintJS,
-    fixJS
+    transpileJS,
+    browserRefresh
 );
